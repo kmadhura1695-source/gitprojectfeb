@@ -1,0 +1,42 @@
+package day1;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.SkipException;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+@Listeners()
+
+
+public class listner {
+	@Test
+	public void login()
+	{
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+		driver.findElement(By.name("username")).sendKeys("Admin");
+		driver.findElement(By.name("password")).sendKeys("admin123");
+		driver.findElement(By.linkText("submit")).click();
+		
+	}
+	
+	@Test
+	public void testToBefailed()
+	{
+		Assert.assertTrue(false);
+	}
+	
+	
+	@Test
+	public void testToBeSkipped()
+	{
+		throw new SkipException("I am skipping it deleberately");
+	}
+}
